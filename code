@@ -1,0 +1,63 @@
+package test;
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+public class test {
+	
+public static void main(String args[])
+{
+   Scanner sc=new Scanner(System.in);
+   int t=sc.nextInt();
+   for(int y=0;y<t;y++){
+   int N=sc.nextInt();
+   int Q=sc.nextInt();
+   int[] sum=new int[N];
+   //String[] name = new String[N];
+   ArrayList<String> name=new ArrayList<String>();
+   for(int i=0;i<N;i++)
+	   name.add(sc.next());
+   for(int k=0;k<Q;k++)
+   {
+   String na=sc.next();
+   //find index of na
+   int amount=sc.nextInt();
+   sum[name.indexOf(na)]+=amount;
+   int q=sc.nextInt();
+   //find amount for eACH PERSON
+   int amount1,amount2;
+   if((amount % (q+1)) == 0)
+   {
+	   amount1=amount/(q+1);
+	   amount2=amount1;
+   }
+   else
+   {
+	    amount2=amount/(q+1) + amount%(q+1);
+	    amount1=amount/(q+1);
+	   
+   }
+   sum[name.indexOf(na)] += (-1)*amount2;
+   
+   for(int i=0;i<q;i++)
+   {
+	   String na1=sc.next();
+	   sum[name.indexOf(na1)]+= (-1)*amount1;
+	   
+   }
+   
+
+   }
+   for(int i=0;i<N;i++)
+   {
+	   if(sum[i]==0)
+		   System.out.println(name.get(i)+" neither owes nor is owed");
+	   else if(sum[i]>0)
+		   System.out.println(name.get(i)+" is owed "+sum[i]);
+	   else
+		   System.out.println(name.get(i)+" owes "+(-1)*sum[i]); 
+   }
+   }
+   }
+
+}
